@@ -181,4 +181,4 @@ with gr.Blocks(title="Videogen Project") as demo:
         outputs=[video_output, status_output, image_file, prompt]
     )
 
-demo.launch(quiet=True)
+demo.launch(server_name="0.0.0.0", quiet=True)
