@@ -134,19 +134,22 @@ with gr.Blocks(title="Videogen Project") as demo:
                 zhipu_quality = gr.Dropdown(
                     choices=["speed", "quality"],
                     label="输出模式",
-                    value="speed"
+                    value="speed",
+                    visible=True  # 默认显示，动态调整
                 )
                 zhipu_audio = gr.Checkbox(label="生成AI音效", value=False)
                 zhipu_size = gr.Dropdown(
                     choices=["720x480", "1024x1024", "1280x960", "960x1280", "1920x1080", "1080x1920", "2048x1080",
                              "3840x2160"],
                     label="分辨率",
-                    value="1920x1080"
+                    value="1920x1080",
+                    visible=True  # 默认显示，动态调整
                 )
                 zhipu_fps = gr.Dropdown(
                     choices=[30, 60],
                     label="帧率 (FPS)",
-                    value=30
+                    value=30,
+                    visible=True  # 默认显示，动态调整
                 )
 
             with gr.Row():
@@ -159,22 +162,23 @@ with gr.Blocks(title="Videogen Project") as demo:
 
 
     # 动态显示逻辑
-    def update_visibility(platform):
+    def update_visibility(platform, zhipu_model):
+        is_zhipu_flash = platform == "智谱AI" and zhipu_model == "CogVideoX-Flash"
         return (
             gr.update(visible=platform == "阿里云百炼"),  # aliyun_model
             gr.update(visible=platform == "智谱AI"),  # zhipu_model
             gr.update(visible=platform == "火山引擎"),  # ark_params
             gr.update(visible=platform == "阿里云百炼"),  # bailian_params
             gr.update(visible=platform == "智谱AI"),  # zhipu_params
-            gr.update(visible=platform == "智谱AI" and "cogvideox-flash" not in zhipu_model.value),  # zhipu_quality
-            gr.update(visible=platform == "智谱AI" and "cogvideox-flash" not in zhipu_model.value),  # zhipu_size
-            gr.update(visible=platform == "智谱AI" and "cogvideox-flash" not in zhipu_model.value)  # zhipu_fps
+            gr.update(visible=platform == "智谱AI" and not is_zhipu_flash),  # zhipu_quality
+            gr.update(visible=platform == "智谱AI" and not is_zhipu_flash),  # zhipu_size
+            gr.update(visible=platform == "智谱AI" and not is_zhipu_flash)  # zhipu_fps
         )
 
 
     platform.change(
         fn=update_visibility,
-        inputs=platform,
+        inputs=[platform, zhipu_model],
         outputs=[aliyun_model, zhipu_model, ark_params, bailian_params, zhipu_params, zhipu_quality, zhipu_size,
                  zhipu_fps]
     )
@@ -200,9 +204,9 @@ with gr.Blocks(title="Videogen Project") as demo:
     )
     zhipu_model.change(
         fn=lambda zhipu_model: (
-            gr.update(visible="cogvideox-flash" not in zhipu_model),
-            gr.update(visible="cogvideox-flash" not in zhipu_model),
-            gr.update(visible="cogvideox-flash" not in zhipu_model)
+            gr.update(visible=zhipu_model != "CogVideoX-Flash"),
+            gr.update(visible=zhipu_model != "CogVideoX-Flash"),
+            gr.update(visible=zhipu_model != "CogVideoX-Flash")
         ),
         inputs=zhipu_model,
         outputs=[zhipu_quality, zhipu_size, zhipu_fps]
