@@ -82,7 +82,7 @@ def update_image_visibility(platform, aliyun_model, ark_duration, zhipu_model):
 
 
 # Gradio 界面
-with gr.Blocks(title="Videogen Project") as demo:
+with gr.Blocks(title="Videogen Project", favicon="assets/creation-light.svg") as demo:
     gr.Markdown("# Videogen Project")
     gr.Markdown("输入提示词并选择平台生成视频，支持上传图片用于文图生视频。")
 
