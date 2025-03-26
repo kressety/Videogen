@@ -1,3 +1,4 @@
+import os
 import re
 import time
 
@@ -15,7 +16,7 @@ def generate_volcengine(prompt, image_url=None, ratio="16:9", duration=5):
     try:
         # 创建任务，传入额外参数
         create_result = volc_client.content_generation.tasks.create(
-            model="ep-20250223171050-xqbtt",
+            model=os.getenv('ARK_ENDPOINT'),
             content=content
         )
         print(f"任务创建成功: {create_result.id}")
