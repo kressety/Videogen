@@ -277,8 +277,8 @@ def update_ui_language(lang):
         gr.update(label=t["ai_audio"]),  # AI audio checkbox
         gr.update(label=t["resolution"]),  # Resolution dropdown for Zhipu
         gr.update(label=t["fps"]),  # FPS dropdown
-        gr.update(text=t["generate"]),  # Generate button
-        gr.update(text=t["clear"]),  # Clear button
+        gr.update(label=t["generate"]),  # Generate button
+        gr.update(label=t["clear"]),  # Clear button
         gr.update(label=t["result"]),  # Video output
         gr.update(label=t["status"])  # Status output
     )
@@ -381,8 +381,8 @@ with gr.Blocks(title="Videogen Project") as demo:
                 )
 
             with gr.Row():
-                submit_btn = gr.Button(text=TRANSLATIONS[default_lang]["generate"])
-                clear_btn = gr.Button(text=TRANSLATIONS[default_lang]["clear"])
+                submit_btn = gr.Button(label=TRANSLATIONS[default_lang]["generate"])
+                clear_btn = gr.Button(label=TRANSLATIONS[default_lang]["clear"])
 
         with gr.Column(scale=1):
             video_output = gr.Video(label=TRANSLATIONS[default_lang]["result"])
