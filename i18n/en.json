@@ -1,0 +1,28 @@
+{
+    "title": "Videogen Project",
+    "subtitle": "Enter prompts and select a platform to generate videos. Upload images for image-to-video generation.",
+    "platform": "Select Platform",
+    "aliyun_model": "Aliyun Model (Only for Aliyun)",
+    "zhipu_model": "Zhipu AI Model (Only for Zhipu AI)",
+    "prompt": "Prompt",
+    "prompt_placeholder": "Enter a description to generate a video, e.g.: A cat running on the grass",
+    "image_upload": "Upload Image (For image-to-video)",
+    "ratio": "Aspect Ratio",
+    "duration": "Video Duration (seconds)",
+    "resolution": "Resolution",
+    "output_mode": "Output Mode",
+    "ai_audio": "Generate AI Audio",
+    "fps": "Frame Rate (FPS)",
+    "generate": "Generate Video",
+    "clear": "Clear",
+    "result": "Result",
+    "status": "Status",
+    "language": "Language",
+    "no_api": "No API Configured",
+    "platforms": {
+        "volcengine": "Volcengine",
+        "aliyun": "Aliyun Bailian",
+        "zhipu": "Zhipu AI",
+        "no_api": "No API Configured"
+    }
+} 

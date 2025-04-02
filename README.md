@@ -1,82 +1,88 @@
-# Videogen - AI视频生成工具
+# Videogen - AI Video Generation Tool
 
 ![Videogen](assets/creation-light.svg)
 
-Videogen是一个基于多种AI模型的视频生成工具，支持火山引擎、阿里云百炼和智谱AI三大平台，可以通过文本提示词或图片+文本组合生成高质量视频。
+*English | [中文](README_zh.md)*
 
-## 功能特点
+Videogen is a video generation tool based on multiple AI models, supporting three major platforms: Volcengine, Aliyun Bailian, and Zhipu AI. It can generate high-quality videos through text prompts or a combination of images and text.
 
-- **多平台支持**：
-  - 火山引擎视频生成
-  - 阿里云百炼通义万相系列模型
-  - 智谱AI的CogVideoX模型系列
-- **多种生成模式**：
-  - 文生视频：仅通过文本描述生成视频
-  - 图生视频：通过图片和文本联合生成视频
-- **高度定制化**：
-  - 支持设置宽高比、分辨率、时长、帧率等参数
-  - 支持AI音效生成（智谱AI）
-- **便捷文件管理**：
-  - 集成Tebi.io云存储服务，自动上传和管理图片素材
+## Features
 
-## 环境变量配置
+- **Multi-platform Support**:
+  - Volcengine video generation
+  - Aliyun Bailian Tongyi Wanxiang series models
+  - Zhipu AI's CogVideoX model series
+- **Multiple Generation Modes**:
+  - Text-to-video: Generate videos through text descriptions only
+  - Image-to-video: Generate videos through a combination of images and text
+- **Highly Customizable**:
+  - Set aspect ratio, resolution, duration, frame rate, and other parameters
+  - Support for AI sound effect generation (Zhipu AI)
+- **Convenient File Management**:
+  - Integrated with Tebi.io cloud storage service for automatic upload and management of image materials
+- **Multilingual Support**:
+  - English and Chinese interface
+  - Auto-detects system language
+  - Easily switch languages within the interface
 
-使用本项目需要配置以下环境变量：
+## Environment Variables
+
+The following environment variables need to be configured to use this project:
 
 ```bash
-# 火山引擎配置
-ARK_API_KEY=your_ark_api_key    # 火山引擎的API KEY
-ARK_ENDPOINT=your_ark_endpoint  # 火山引擎的推理接入点
+# Volcengine Configuration
+ARK_API_KEY=your_ark_api_key    # Volcengine API KEY
+ARK_ENDPOINT=your_ark_endpoint  # Volcengine inference endpoint
 
-# 阿里云百炼配置
-DASHSCOPE_API_KEY=your_dashscope_api_key  # 阿里云百炼的API KEY
+# Aliyun Bailian Configuration
+DASHSCOPE_API_KEY=your_dashscope_api_key  # Aliyun Bailian API KEY
 
-# 智谱AI配置
-ZHIPUAI_API_KEY=your_zhipuai_api_key  # 智谱AI的API KEY
+# Zhipu AI Configuration
+ZHIPUAI_API_KEY=your_zhipuai_api_key  # Zhipu AI API KEY
 
-# Tebi.io云存储配置
-TEBI_ACCESS_KEY=your_tebi_access_key  # Tebi.io的ACCESS KEY
-TEBI_SECRET_KEY=your_tebi_secret_key  # Tebi.io的SECRET KEY
+# Tebi.io Cloud Storage Configuration
+TEBI_ACCESS_KEY=your_tebi_access_key  # Tebi.io ACCESS KEY
+TEBI_SECRET_KEY=your_tebi_secret_key  # Tebi.io SECRET KEY
 ```
 
-## 安装说明
+## Installation
 
-1. 克隆仓库：
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/yourusername/videogen.git
 cd videogen
 ```
 
-2. 安装依赖：
+2. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. 设置环境变量（可使用.env文件或系统环境变量）
+3. Set environment variables (using .env file or system environment variables)
 
-4. 启动应用：
+4. Start the application:
 
 ```bash
 python main.py
 ```
 
-## 使用方法
+## Usage
 
-1. 在浏览器中访问 `http://localhost:7860`（默认端口）
-2. 选择目标AI平台（火山引擎/阿里云百炼/智谱AI）
-3. 输入详细的提示词描述您想要生成的视频内容
-4. 如果需要图生视频，请上传参考图片
-5. 根据您选择的平台，设置合适的参数（宽高比、分辨率、时长等）
-6. 点击"生成视频"按钮，等待生成完成
-7. 生成完成后，可以直接在界面中预览或下载视频
+1. Access `http://localhost:7860` in your browser (default port)
+2. Select the target AI platform (Volcengine/Aliyun Bailian/Zhipu AI)
+3. Enter detailed prompt describing the video content you want to generate
+4. If you need image-to-video generation, upload a reference image
+5. Set appropriate parameters based on your chosen platform (aspect ratio, resolution, duration, etc.)
+6. Click the "Generate Video" button and wait for generation to complete
+7. Once generation is complete, you can preview or download the video directly from the interface
 
-## Docker部署
+## Docker Deployment
 
-### 使用预构建镜像（推荐）
+### Using Pre-built Image (Recommended)
 
-我们提供了预构建的Docker镜像，支持arm64和amd64平台，可以直接使用：
+We provide pre-built Docker images supporting arm64 and amd64 platforms:
 
 ```bash
 docker run -p 7860:7860 \
@@ -89,9 +95,9 @@ docker run -p 7860:7860 \
   arnocher/videogen
 ```
 
-### 自行构建镜像
+### Build Your Own Image
 
-也可以自行构建镜像：
+You can also build the image yourself:
 
 ```bash
 docker build -t videogen .
@@ -105,17 +111,26 @@ docker run -p 7860:7860 \
   videogen
 ```
 
-## 注意事项
+## Notes
 
-- 请确保您拥有所有必需的API密钥和访问权限
-- 上传的图片需符合各平台的要求（建议分辨率≥300px，宽高比在0.4-2.5之间）
-- 生成的视频内容应遵守相关法律法规和平台政策
+- Make sure you have all required API keys and access permissions
+- Uploaded images must comply with the requirements of each platform (recommended resolution ≥300px, aspect ratio between 0.4-2.5)
+- Generated video content should comply with relevant laws, regulations, and platform policies
+- If the Tebi.io configuration is missing, image-to-video features will be disabled
+- The application requires translation files in the i18n directory to run
 
-## 鸣谢
+## Internationalization
 
-本项目使用了以下开源库和API服务：
+The application supports multiple languages through the i18n system:
+- Translation files are stored in the `i18n` directory as JSON files
+- Currently supported languages: English (`en.json`) and Chinese (`zh.json`)
+- To add a new language, create a new JSON file in the i18n directory following the same format
+
+## Acknowledgements
+
+This project uses the following open-source libraries and API services:
 - Gradio
 - Volcengine SDK
 - DashScope SDK
 - ZhipuAI SDK
-- Boto3 (用于S3兼容存储) 
+- Boto3 (for S3-compatible storage) 

@@ -1,0 +1,28 @@
+{
+    "title": "Videogen Project",
+    "subtitle": "输入提示词并选择平台生成视频，支持上传图片用于文图生视频。",
+    "platform": "选择平台",
+    "aliyun_model": "阿里云模型（仅阿里云生效）",
+    "zhipu_model": "智谱AI模型（仅智谱AI生效）",
+    "prompt": "提示词",
+    "prompt_placeholder": "请输入生成视频的描述，例如：一只猫在草地上奔跑",
+    "image_upload": "上传图片（用于文图生视频）",
+    "ratio": "宽高比例",
+    "duration": "视频时长（秒）",
+    "resolution": "分辨率",
+    "output_mode": "输出模式",
+    "ai_audio": "生成AI音效",
+    "fps": "帧率 (FPS)",
+    "generate": "生成视频",
+    "clear": "清除",
+    "result": "生成结果",
+    "status": "状态",
+    "language": "语言/Language",
+    "no_api": "未配置任何API",
+    "platforms": {
+        "volcengine": "火山引擎",
+        "aliyun": "阿里云百炼",
+        "zhipu": "智谱AI",
+        "no_api": "未配置任何API"
+    }
+} 
