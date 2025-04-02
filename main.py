@@ -70,14 +70,17 @@ def get_platform_names(translations):
 # Create platform name translation mappings
 PLATFORM_NAMES = get_platform_names(TRANSLATIONS)
 
-# Try to detect system language
+# Try to detect system language using newer APIs to avoid deprecation warning
 try:
-    system_locale, _ = locale.getdefaultlocale()
-    default_lang = "zh" if system_locale and system_locale.startswith("zh") else "en"
+    # Use setlocale() to get current locale and then getlocale()
+    current_locale = locale.setlocale(locale.LC_ALL, '')
+    # Check if the locale contains a language code we can use
+    default_lang = "zh" if current_locale and current_locale.startswith(("zh", "Chinese")) else "en"
+    
     if default_lang not in TRANSLATIONS:
         default_lang = "en"  # Fallback to English if the detected language is not supported
-except:
-    default_lang = "en"
+except Exception:
+    default_lang = "en"  # Default to English on error
 
 # Check environment variables for each API
 available_apis = []
@@ -483,11 +486,15 @@ with gr.Blocks(title="Videogen Project") as demo:
         outputs=[video_output, status_output, image_file, prompt]
     )
 
-# Initialize UI with default language
-demo.load(fn=update_ui_language, inputs=current_lang, outputs=[
-    page_title, subtitle, platform, aliyun_model, zhipu_model, prompt, image_file,
-    ark_ratio, ark_duration, bailian_size, zhipu_quality, zhipu_audio, zhipu_size,
-    zhipu_fps, submit_btn, clear_btn, video_output, status_output
-])
+    # Initialize UI with default language within the Blocks context
+    demo.load(
+        fn=update_ui_language,
+        inputs=current_lang,
+        outputs=[
+            page_title, subtitle, platform, aliyun_model, zhipu_model, prompt, image_file,
+            ark_ratio, ark_duration, bailian_size, zhipu_quality, zhipu_audio, zhipu_size,
+            zhipu_fps, submit_btn, clear_btn, video_output, status_output
+        ]
+    )
 
 demo.launch(server_name="0.0.0.0")
