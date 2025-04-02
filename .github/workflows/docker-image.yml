@@ -32,7 +32,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/videogen:${{ github.sha }}-amd64,${{ secrets.DOCKER_USERNAME }}/videogen:latest-amd64
+          tags: ${{ secrets.DOCKER_USERNAME }}/videogen:${{ github.sha }},${{ secrets.DOCKER_USERNAME }}/videogen:latest
 
   build-arm64:
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/videogen:${{ github.sha }}-arm64,${{ secrets.DOCKER_USERNAME }}/videogen:latest-arm64
+          tags: ${{ secrets.DOCKER_USERNAME }}/videogen:${{ github.sha }},${{ secrets.DOCKER_USERNAME }}/videogen:latest
 
   deploy:
     runs-on: ubuntu-latest
